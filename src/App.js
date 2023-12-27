@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { ToastContainer } from "react-toastify";
+import AppRoutes from "./routes/AppRoutes";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { handleRefresh } from "./store/actions/userAction";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch(handleRefresh())
+    }
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div style={{ margin: '-10px 0px -10px -10px' }}>
+        <AppRoutes />
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 }
 
