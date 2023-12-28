@@ -33,7 +33,7 @@ const PrivateRoutes = ({ children }) => {
                 <Layout style={{
                     marginLeft: collapsed == true ? '5rem' : '13rem'
                 }}>
-                    <Content style={{ overflow: 'auto' }}>
+                    <Content style={{}}>
                         {children}
                     </Content>
                     <Footer

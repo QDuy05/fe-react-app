@@ -2,8 +2,9 @@
 import React from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import iconMarker from '../../images/iconMarker.png';
+import VNMap from '../../geojson/diaphantinh.json'
 
 const markerIcon = L.icon({
     iconUrl: iconMarker,
@@ -21,12 +22,19 @@ const Map = ({ data }) => {
     // Chọn 5 thành phố đầu tiên
     const top5Cities = sortedData.slice(0, 5);
 
+    const onEachFeature = (feature, layer) => {
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup(feature.properties.name); // Hiển thị Popup với tên đối tượng
+        }
+    };
+
     return (
         <MapContainer center={center} zoom={6} style={{ height: '400px', width: '100%' }}>
             <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
+            <GeoJSON data={VNMap} style={{ fillColor: 'green', color: 'black', weight: 1 }} onEachFeature={onEachFeature} />
 
             {/* Chấm marker cho 5 thành phố có số liệu nhiều nhất */}
             {top5Cities.map(city => (

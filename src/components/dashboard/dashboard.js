@@ -6,6 +6,9 @@ import CardOverview from "./cards_overview";
 import Map from "./map";
 import CustomActiveShapePieChart from "./piechart";
 import DonutPieChart from "./piechart";
+import PortTable from "./portsTable";
+import FishingPortTable from "./portsTable";
+import FishProduction from "./fishTable";
 
 
 const data = [
@@ -59,12 +62,13 @@ const Dashboard = (props) => {
                         <Col span={8}>
                             <Card style={{ height: 500 }} >
                                 <p style={{ fontWeight: 'bold' }}>Cảng cá</p>
-
+                                <FishingPortTable />
                             </Card>
                         </Col>
                         <Col span={16}>
                             <Card style={{ height: 500 }} >
                                 <p style={{ fontWeight: 'bold' }}>Thủy Sản</p>
+                                <FishProduction />
                             </Card>
                         </Col>
                     </Row>
