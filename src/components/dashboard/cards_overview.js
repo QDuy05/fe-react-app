@@ -10,12 +10,12 @@ const data = [
 const CardOverview = () => {
     return (
         <>
-            <Card size="small" style={{ height: 300, alignItems: 'center', justifyContent: 'center', display: 'flex', backgroundColor: '#f5f5f5' }}>
+            <div style={{ height: 300, alignItems: 'center', display: 'flex', backgroundColor: '#f5f5f5', marginLeft: '-8px' }}>
                 <Row align="middle">
                     {data.map((item, index) => (
                         <Col span={12} key={index}>
-                            <Card style={{ maxHeight: '140px', width: '90%', margin: '0.5rem', }}>
-                                <div style={{ display: 'flex' }}>
+                            <Card bordered={false} style={{ maxHeight: '140px', width: '95%', margin: '0.5rem' }}>
+                                <div style={{ display: 'flex', margin: 0 }}>
                                     <div style={{ flex: 1 }}>
                                         <p style={{ fontWeight: 'bold', marginTop: '-5px' }}>{item.title}</p>
                                         <p >{item.content1}</p>
@@ -29,7 +29,7 @@ const CardOverview = () => {
                         </Col>
                     ))}
                 </Row>
-            </Card>
+            </div>
         </>
     )
 }

@@ -4,6 +4,8 @@ import BarChartRecharts from "./barchart"
 
 import CardOverview from "./cards_overview";
 import Map from "./map";
+import CustomActiveShapePieChart from "./piechart";
+import DonutPieChart from "./piechart";
 
 
 const data = [
@@ -18,30 +20,53 @@ const dataMap = [
     // ... (các thông tin khác về tỉnh thành)
 ];
 
+const styleRowCard = {
+    marginBottom: '1rem'
+}
+
 const Dashboard = (props) => {
 
     return (
         <>
             <div style={{ backgroundColor: '#f5f5f5' }}>
                 <Card title='Quản lý khai thác thủy sản' style={{ backgroundColor: '#f5f5f5' }}>
-                    <Row >
+                    <Row gutter={[8, 8]} style={styleRowCard}>
                         <Col span={10} >
                             <CardOverview />
                         </Col>
                         <Col span={14}>
                             <Card size="small" style={{ height: 300, alignItems: 'center', justifyContent: 'center', }}>
-                                <h3>Thống kê chuyến biển</h3>
+                                <p style={{ fontWeight: 'bold' }}>Thống kê chuyến biển</p>
                                 <BarChartRecharts />
                             </Card>
                         </Col>
                     </Row>
-                    <Row >
-                        <Col span={24} >
-                            <Card style={{ width: '100%', maxHeight: '400px' }}>
+                    <Row style={styleRowCard} gutter={[8, 8]}>
+                        <Col span={16} >
+                            <Card style={{ width: '100%', height: 500, alignItems: 'center', justifyContent: 'center', }}>
+                                <p style={{ fontWeight: 'bold' }}>Bản đồ khai thác</p>
                                 <Map data={dataMap} />
                             </Card>
                         </Col>
+                        <Col span={8}>
+                            <Card style={{ height: 500 }}>
+                                <p style={{ fontWeight: 'bold' }}>Nhóm khai thác</p>
+                                <DonutPieChart />
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row gutter={[8, 8]}>
+                        <Col span={8}>
+                            <Card style={{ height: 500 }} >
+                                <p style={{ fontWeight: 'bold' }}>Cảng cá</p>
 
+                            </Card>
+                        </Col>
+                        <Col span={16}>
+                            <Card style={{ height: 500 }} >
+                                <p style={{ fontWeight: 'bold' }}>Thủy Sản</p>
+                            </Card>
+                        </Col>
                     </Row>
                 </Card>
 
